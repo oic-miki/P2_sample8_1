@@ -15,7 +15,7 @@ using (SqlConnection conn = new SqlConnection())
     conn.ConnectionString = connectionString;
 
     // コマンドの準備
-    string query = "UPDATE M_Position SET PositionName = @pos WHERE PositionID = @id;";
+    string query = "UPDATE M_Position SET pos = @pos WHERE id = @id;";
     using (SqlCommand cmd = new SqlCommand())
     {
         cmd.Connection = conn;
@@ -42,10 +42,10 @@ using (SqlConnection conn = new SqlConnection())
                 Console.WriteLine("更新に失敗しました。");
             }
         }
-        catch
+        catch (Exception e)
         {
             // 例外が出た場合の処理
-            Console.WriteLine("エラーが発生しました。");
+            Console.WriteLine("エラーが発生しました。{0}", e.Message);
         }
     }
 }
